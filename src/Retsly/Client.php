@@ -64,6 +64,33 @@ class Client {
   }
 
   /**
+   * Get an assessments request
+   * @param array $query
+   * @return \Retsly\Request
+   */
+  function assessments ($query=[]) {
+    return new AssessmentRequest($this, $query);
+  }
+
+  /**
+   * Get a transactions request
+   * @param array $query
+   * @return \Retsly\Request
+   */
+  function transactions ($query=[]) {
+    return new TransactionRequest($this, $query);
+  }
+
+  /**
+   * Get a parcels request
+   * @param array $query
+   * @return \Retsly\Request
+   */
+  function parcels ($query=[]) {
+    return new ParcelRequest($this, $query);
+  }
+
+  /**
    * Get a new Request object
    * @param string $method
    * @param string $url
@@ -74,8 +101,9 @@ class Client {
     return new Request($this, $method, $url, $query);
   }
 
-  function getURL ($resource) {
-    return self::BASE_URL . "/" . $this->vendor . "/" . $resource . "/";
+  function getURL ($resource, $vendor=null) {
+    $vendor = $vendor ?: $this->vendor;
+    return self::BASE_URL . "/$vendor/$resource/";
   }
 
 }
