@@ -52,6 +52,18 @@ Returns a new `Request` for the Offices resource.
 
 Returns a new `Request` for the OpenHouses resource.
 
+### Client#assessments([$query])
+
+Returns a new `Request` for the Assessments resource.
+
+### Client#transactions([$query])
+
+Returns a new `Request` for the Transactions resource.
+
+### Client#parcels([$query])
+
+Returns a new `Request` for the Parcels resource.
+
 ### Request($method, $url, $query, $token)
 
 The request constructor takes an HTTP method, a complete URL, an
