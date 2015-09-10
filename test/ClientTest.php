@@ -28,4 +28,10 @@ class ClientTest extends PHPUnit_Framework_TestCase {
     $r = $c->getRequest("get", "http://google.com/", []);
     $this->assertInstanceOf("Retsly\Request", $r);
   }
+
+  function testGetURL() {
+    $c = new Client("bogus", "test");
+    $url = $c->getURL("listings");
+    $this->assertEquals("https://rets.io/api/v1/test/listings/", $url);
+  }
 }

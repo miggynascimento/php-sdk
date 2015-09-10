@@ -75,7 +75,7 @@ class Client {
   }
 
   function getURL ($resource) {
-    return self::BASE_URL . "/" . $resource . "/" . $this->vendor . "/";
+    return self::BASE_URL . "/" . $this->vendor . "/" . $resource . "/";
   }
 
 }
