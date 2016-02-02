@@ -76,8 +76,8 @@ class Request {
    * Increases offset by one page (limit)
    */
   function nextPage () {
-    $limit = intval($this->query["limit"]);
-    $offset = intval($this->query["offset"]);
+    $limit = $this->getQueryValue("limit");
+    $offset = $this->getQueryValue("offset");
     return $this->offset($offset + $limit);
   }
 
@@ -85,8 +85,8 @@ class Request {
    * Decreases offset by one page (limit)
    */
   function prevPage () {
-    $limit = intval($this->query["limit"]);
-    $offset = intval($this->query["offset"]);
+    $limit = $this->getQueryValue("limit");
+    $offset = $this->getQueryValue("offset");
     if ($offset < $limit) return $this;
     return $this->offset($offset - $limit);
   }
@@ -157,6 +157,11 @@ class Request {
     return $res->bundle;
   }
 
+  private function getQueryValue ($key) {
+    $q = $this->query;
+    return isset($q[$key]) ? intval($q[$key]) : 0;
+  }
+
   private function getHeader () {
     return [
       strtoupper($this->method) . " " . $this->url . " HTTP/1.1",
@@ -167,7 +172,7 @@ class Request {
 
   private function getPath () {
     $q = "?" . http_build_query($this->query);
-    return $this->url . ($this->key ? "/" . $this->key : $q);
+    return $this->url . (isset($this->key) ? "/" . $this->key : $q);
   }
 
   private function getCurlSession () {
