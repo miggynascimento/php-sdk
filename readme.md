@@ -7,7 +7,7 @@
 
 With [Composer](https://getcomposer.org/):
 
-    $ composer install retsly/php-sdk
+    $ composer require retsly/php-sdk
 
 ## Usage
 
